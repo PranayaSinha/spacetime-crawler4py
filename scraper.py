@@ -22,6 +22,12 @@ def extract_next_links(url, resp):
 
     links = []
     soup = BeautifulSoup(resp.raw_response.content, 'html.parser')
+
+    # Write file locally
+    with open("Res.Txt", "a") as file:
+        file.write(str(soup))
+
+    
     for link in soup.find_all('a'):
         link = link.get('href')
         # Detect and avoid dead URLs that return a 200 status but no data
@@ -32,9 +38,9 @@ def extract_next_links(url, resp):
             link = urljoin(url, link)
             links.append(link)
             print(link)
-    with open("Res.txt", "a") as file:
-        file.write(str(soup))
-
+        else:
+            print(resp.error)
+    
     return links
 
 def is_valid(url):
