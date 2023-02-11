@@ -30,7 +30,9 @@ def extract_next_links(url, resp):
             # Transform relative to absolute URL
             link = urljoin(url, link)
             links.append(link)
-            print(link)
+            
+    with open("res.txt", "w") as file:
+        file.write(str(soup))
     return links
 
 def is_valid(url):
@@ -53,7 +55,7 @@ def is_valid(url):
         # Detect and avoid infinite traps
         
         # Honor the politeness delay for each site
-        time.sleep(1)
+        #time.sleep(1)
 
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
