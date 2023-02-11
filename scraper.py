@@ -41,9 +41,7 @@ def is_valid(url):
         parsed = urlparse(url)
         if parsed.scheme not in set(["http", "https"]):
             return False
-        # Check if the URL is within the specified domains and paths
-        if not re.match(r".*\.(ics|cs|informatics|stat)\.uci\.edu/.*", parsed.netloc):
-            return False
+       
         # Detect and avoid large files, especially if they have low information value
 
         # Detect and avoid dead URLs that return a 200 status but no data
@@ -51,6 +49,7 @@ def is_valid(url):
         # Detect and avoid sets of similar pages with no information
 
         # Detect and avoid infinite traps
+        
         
         # Honor the politeness delay for each site
         time.sleep(1)
